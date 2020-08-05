@@ -11,7 +11,7 @@ const baseUrl = 'https://www.cermati.com'
 exports.main = async () => {
     const { body } = await got(`${baseUrl}/artikel`)
     const $ = cheerio.load(body)
-    return $('.list-of-articles .article-list-item').get().map((article) => {
+    const articles = $('.list-of-articles .article-list-item').get().map((article) => {
         try {
             const $article = $(article)
             const $link = $article.find('a')
@@ -27,6 +27,9 @@ exports.main = async () => {
             console.log('parse error', err)
         }
     }).filter(Boolean)
+    return (await pMap(articles, processDetailPage, {
+        concurrency: 3
+    })).filter(Boolean)
 }
 
 // url ^
@@ -40,7 +43,10 @@ async function processDetailPage(article){
     try {
         const {body} = await got(article.url)
         const $ = cheerio.load(body)
-
+        const authorName = $('.author-name').text().trim()
+        return {
+            authorName
+        }
     } catch (error) {
         
     }
