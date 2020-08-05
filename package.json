@@ -1,0 +1,27 @@
+{
+  "name": "cermati-scrapper",
+  "version": "1.0.0",
+  "description": "Cermati.com blog scrapper apps built with node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "scraper",
+    "cheerio"
+  ],
+  "author": "Syahrul",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "cheerio": "^1.0.0-rc.3",
+    "got": "^11.5.1",
+    "p-map": "^4.0.0",
+    "superagent": "^5.3.1",
+    "superagent-cheerio": "^1.0.1",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
